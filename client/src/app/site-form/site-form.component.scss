@@ -1,0 +1,24 @@
+.form {
+    margin: 30px;
+    padding: 30px;
+    border: 1px solid rgb(76, 76, 240);
+    width: fit-content;
+    .divider {
+        background-color: grey;
+        height: 1px;
+        width: 100%;
+    }
+    .info {
+        padding: 20px;
+    }
+    .form-field {
+        min-width: 500px;
+        max-width: 800px;
+    }
+    .log-list {
+        background-color: lightgrey;
+        border-radius: 4px;
+        padding: 20px;
+        width: stretch;
+    }
+}

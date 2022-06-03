@@ -1,0 +1,8 @@
+<mat-toolbar color="primary" fxLayout="row" fxLayoutAlign="space-between center" *ngIf="loggedIn">
+  <div>Auditlog</div>
+  <div>
+    <a mat-button class="mr-20" routerLink="/list" >Site List</a>
+    <a mat-button routerLink="/create">Create Site Info</a>
+    <a mat-button (click)="logout()">Logout</a>
+  </div>
+</mat-toolbar>

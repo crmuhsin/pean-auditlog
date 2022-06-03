@@ -1,0 +1,63 @@
+<div class="loading-shade" *ngIf="isLoading">
+    <mat-spinner *ngIf="isLoading"></mat-spinner>
+</div>
+<form class="form" fxLayout="column" fxLayoutAlign="center start" *ngIf="siteForm" [formGroup]="siteForm" [ngStyle]="{ 'opacity': isLoading ? 0 : 1}">
+    <div fxLayout="row" fxLayoutGap="16px">
+        <button mat-stroked-button color="primary" [disabled]="!isFormFilled" (click)="processSite()">
+            <mat-icon aria-hidden="false" aria-label="Example home icon">save</mat-icon>
+            {{ isUpdate ? 'Update' : 'Save'}}
+        </button>
+        <button mat-stroked-button (click)="gotoList()">
+            <mat-icon aria-hidden="false" aria-label="Example home icon">close</mat-icon>
+            Cancel
+        </button>
+    </div>
+
+    <div class="divider mt-12 mb-12"></div>
+
+    <span class="info w-100-p" *ngIf="siteId">Site Id: {{siteId}}</span>
+
+    <mat-form-field class="form-field" appearance="outline">
+        <mat-label>Name</mat-label>
+        <input matInput placeholder="Name" formControlName="name" />
+    </mat-form-field>
+
+    <mat-form-field class="form-field" appearance="outline">
+        <mat-label>Jurisdiction/City/Region</mat-label>
+        <input type="text" placeholder="Pick one" matInput [formControl]="regionControl" [matAutocomplete]="auto" required>
+        <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete">
+            <mat-option *ngFor="let option of filteredOptions | async" [value]="option.city">
+                {{option.city}}, {{option.admin_name}}
+            </mat-option>
+        </mat-autocomplete>
+    </mat-form-field>
+
+    <mat-form-field class="form-field" appearance="outline">
+        <mat-label>Site Description</mat-label>
+        <textarea matInput placeholder="Site Description" formControlName="description" cols="30" rows="3"></textarea>
+    </mat-form-field>
+
+    <div fxLayout="row" fxLayoutGap="16px">
+        <mat-form-field appearance="outline">
+            <mat-label>Latitude</mat-label>
+            <input matInput type="text" formControlName="latitude" placeholder="Latitude" />
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+            <mat-label>Longitude</mat-label>
+            <input matInput type="text" formControlName="longitude" placeholder="Longitude" />
+        </mat-form-field>
+    </div>
+
+    <div *ngIf="logList.length" class="log-list">
+        Audit Log:
+        <div class="divider mt-12 mb-12"></div>
+        <div>
+            <p class="log-desc" *ngFor="let log of logList">
+                {{ log.update_count == 1 ? 'Created by ' : 'Updated by '}} {{ log.created_by }} on {{ log.created_at | date:'medium' }}
+            </p>
+        </div>
+    </div>
+
+
+</form>
