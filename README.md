@@ -14,7 +14,6 @@ $ git clone https://github.com/crmuhsin/pean-auditlog.git
 
 ## Run Client Side
 ``` shell
-$ # Node version > v10.0.0 is requied
 $ cd pean-auditlog/client
 $ yarn install
 $ yarn start
@@ -22,7 +21,6 @@ $ yarn start
 
 ## Run Server Side
 ``` shell
-$ # Node version > v10.0.0 is requied
 $ cd yarn/server
 $ yarn install
 $ yarn start
